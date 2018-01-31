@@ -1,0 +1,86 @@
+<?php  $this->load->view('admin/header.html')?>
+<div id="dcMain">
+    <!-- 当前位置 -->
+    <div id="urHere">iamhack后台管理中心<b>></b><strong>添加文章</strong></div>
+    <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="<?php echo site_url('admin/article/article_list')?>" class="actionBtn">文章列表</a>添加文章</h3>
+        <form action="<?php echo site_url('admin/article/send_article') ?>" method="post" enctype="multipart/form-data">
+            <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+                <tr>
+                    <td width="90" align="right">文章名称</td>
+                    <td>
+                        <input type="text" name="title" value="<?php  echo set_value('title') ?>" size="80"
+                               class="inpMain"/>
+                        <?php echo form_error('title' ,'<span>' ,'</span>') ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">文章分类</td>
+                    <td>
+                        <select name="cat_id">
+                            <option value="0">未分类</option>
+                            <?php foreach ($category_list as $v): ?>
+                            <!--<option value="<?php echo set_select('cat_id','1',TRUE) ?>"> <?php echo $v['cate_name']?></option>-->
+                            <option value="<?php echo $v['id'] ?>"> <?php echo $v['cate_name']?></option>
+                            <?php endforeach ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" valign="top">文章描述</td>
+                    <td>
+                        <!-- KindEditor -->
+                        </textarea>
+                        <textarea id="container" name="content" type="text/plain">
+     
+    </textarea>
+                        <!-- 配置文件 -->
+                        <script type="text/javascript" src="<?php echo base_url()?>ueditor/ueditor.config.js"></script>
+                        <script type="text/javascript" src="<?php echo base_url()?>ueditor/ueditor.all.min.js"></script>
+                        <!-- 编辑器源码文件 -->
+                        <!-- 实例化编辑器 -->
+
+                        <script type="text/javascript">
+                            window.UEDITOR_CONFIG.initialFrameWidth = 780;
+                            window.UEDITOR_CONFIG.initialFrameHeight = 400;
+                            var ue = UE.getEditor('container');
+
+                        </script>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">缩略图</td>
+                    <td>
+                        <input type="file" name="thumb" size="38" class="inpFlie"/>
+                        <img src="<?php base_url() ?>/ci/style/admin/images/icon_no.png"></td>
+                </tr>
+                <tr>
+                    <td align="right">关键字</td>
+                    <td>
+                        <input type="text" name="keywords" value="" size="50" class="inpMain"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">简单描述</td>
+                    <td>
+                        <input type="text" name="description" value="<?php set_value('description')?>" size="50"
+                               class="inpMain"/>
+                        <?php echo form_error('description' ,'<span>','</span>') ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <input type="hidden" name="token" value="7e4a88fb"/>
+                        <input type="hidden" name="image" value="">
+                        <input type="hidden" name="id" value="">
+                        <input name="submit" class="btn" type="submit" value="提交"/>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+</div>
+<div class="clear"></div>
+<?php  $this->load->view('admin/footer.html')?>

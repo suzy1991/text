@@ -1,0 +1,38 @@
+<?php  $this->load->view('admin/header.html')?>
+<div id="dcMain">
+    <!-- 当前位置 -->
+    <div id="urHere">iamhack后台管理中心<b>></b><strong>文章分类</strong></div>
+    <div class="mainBox" style="height:auto!important;height:550px;min-height:550px;">
+        <h3><a href="add_article_category.html?rec=add" class="actionBtn add">添加分类</a>文章分类</h3>
+        <table width="100%" border="0" cellpadding="8" cellspacing="0" class="tableBasic">
+            <tr>
+                <th width="22" align="center">
+                <input name='chkall' type='checkbox' id='chkall' onclick='' value='check'></th>
+                <th width="20"  align="center">编号</th>
+                <th width="150" align="left">文章名称</th>
+                <th width="150" align="center">文章分类</th>
+                <th width="150" align="center">文章摘要</th>
+                <th width="80"  align="center">操作</th>
+            </tr>
+            <?php foreach ($article_list as $v): ?>
+            <tr>
+                <td width="22" align="center"><input name='chkall' type='checkbox' id=''  onclick='selectcheckbox(this.form)' value='check'></td>
+                <td align="center"><a href="#"><?php echo $v['id']?></a></td>
+                <td align="left"><a href="#"><?php echo $v['title']?></a></td>
+                <td><?php echo $v['cate_name'] ?></td>
+                <td><?php echo $v['description'] ?></td>
+                <td align="center">
+                    <a href="<?php echo site_url('admin/article/edit_article/' . $v['id']) ?>">编辑</a> |
+                    <a onclick="javascript:if (confirm('确定删除吗？')) { return true;}else{return false;};" href="<?php echo site_url('admin/article/del_article/' . $v['id']) ?>">删除</a>
+                </td>
+            </tr>
+            <?php endforeach ?>
+        </table>
+        <div id="page"><?php echo $links;?></div>
+    </div>
+</div>
+<div class="clear"></div>
+
+<script>
+
+<?php  $this->load->view('admin/footer.html')?>
